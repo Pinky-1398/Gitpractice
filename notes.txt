@@ -1,4 +1,4 @@
-Hello Git
+Hello from conflict branch
 Today I learned Git commit
 Git is awesome.
 this line was added by the feature branch.
