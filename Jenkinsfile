@@ -1,38 +1,24 @@
 pipeline {
     agent any
 
-    environment {
-        DEMO_SECRET = credentials('demo-secret')
+    parameters {
+        choice(
+            name: 'DEPLOY_ENV',
+            choices: ['dev', 'staging', 'production'],
+            description: 'Select deployment environment'
+        )
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                echo 'Checking out source code'
-            }
-        }
-
         stage('Build') {
             steps {
-                echo 'Building application'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo 'Running tests'
-            }
-        }
-
-        stage('Credentials Test') {
-            steps {
-                echo 'Credential is available to the pipeline'
+                echo "Building application"
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying application'
+                echo "Deploying to ${params.DEPLOY_ENV}"
             }
         }
     }
